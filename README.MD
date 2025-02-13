@@ -5,7 +5,6 @@ Criar uma aplicação Java simples e demonstrar **diferentes formas de instrumen
 1. **Métricas JMX**: Inspecionar métricas da JVM usando `jcmd` e `JConsole`.
 2. **OpenTelemetry Agent**: Usar um agente para coletar métricas automaticamente e exportá-las via OTLP.
 3. **Micrometer**: Integrar a aplicação com Micrometer e comparar com OpenTelemetry.
-4. **Outros agentes (Datadog, etc.)**: Explorar outras ferramentas de observabilidade gratuitas.
 
 ---
 
