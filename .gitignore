@@ -1,0 +1,10 @@
+target/
+.idea/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+graylog
+logs
+**/opentelemetry-javaagent.jar
+docker/coletor/otelcol-contrib
+docker/coletor/otelcol.tar.gz
