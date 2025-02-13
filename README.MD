@@ -162,6 +162,9 @@ receivers:
       grpc:
       http:
 
+processors:
+  batch:
+
 exporters:
   prometheus:
     endpoint: "0.0.0.0:9464"
@@ -174,7 +177,12 @@ service:
   pipelines:
     metrics:
       receivers: [otlp]
+      processors: [batch]
       exporters: [prometheus]
+
+  telemetry:
+    logs:
+      level: debug
 ```
 
 > Mais infos sobre promtheus export (Prometheus Exporter)[https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/prometheusexporter/README.md]
@@ -235,16 +243,5 @@ Então **o agente do OpenTelemetry coleta métricas de três principais fontes q
 
 ---
 
-
-
-```sh
--Dotel.logging.level=debug
-```
-Isso mostrará **quais instrumentações foram aplicadas**.
-
-📌 **Se o agente não capturar automaticamente, a solução é adicionar métricas via JMX ou implementar um SDK manualmente.**
-
-Faz sentido agora? 🚀
-📌 **Próximo passo:** Adicionar **Micrometer** e comparar os nomes das métricas geradas. 🎯
 
 

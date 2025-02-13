@@ -31,7 +31,7 @@ public class CustomMetrics implements CustomMetricsMBean {
     public int increment() {
         return counter.incrementAndGet();
     }
-    
+
     private static void registerBeanMetrics()  {
         try {
             // Criar e registrar um MBean para expor métricas personalizadas via JMX
