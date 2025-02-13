@@ -1,0 +1,51 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+
+processors:
+  batch:
+
+exporters:
+  # https://github.com/open-telemetry/opentelemetry-collector-contrib/blob/main/exporter/prometheusexporter/README.md
+  prometheus:
+    endpoint: "0.0.0.0:9464"
+    const_labels:
+      meu_label: valor_meu_label
+      "another meu_label": spaced value
+    resource_to_telemetry_conversion:
+      enabled: false # -false > jvm_class_count extras atributtes removed
+    enable_open_metrics: false # false -> metrics in open metrics formats
+    add_metric_suffixes: true # false -> jvm_class_loaded | true -> jvm_class_loaded_total
+
+  otlp:
+    endpoint: "http://localhost:9009" # Adicionando exportação OTLP para envio
+    tls:
+      insecure: true
+
+  debug:
+    verbosity: detailed
+
+service:
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [prometheus]
+
+    traces:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug]
+
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [debug]
+
+  telemetry:
+    logs:
+      level: debug
+
+
